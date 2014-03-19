@@ -53,7 +53,7 @@ module Parser
   end
 
   def self.find_random_words (info_array, repeat = 1)
-    puts info_array.inspect
+    #puts info_array.inspect
     result_vector = []
     info_array.each do |info|
       # set default values
@@ -104,7 +104,7 @@ module Parser
            return
           else
             result_vector << matches[rand(matches.size)]
-            puts result_vector.inspect
+            #puts result_vector.inspect
           end
         end
       end
@@ -136,7 +136,7 @@ module Parser
         puts "detected wildcard"
         overall_info[:wildcard] = true
       elsif (arg[Is_valid_flag])
-        puts "flag #{arg} is valid"
+        #puts "flag #{arg} is valid"
         if (arg[1] == "a")
           if (arg[2] == "*")
             overall_info[:alliteration] = File.readlines("word_lists/iamb_01.txt")[rand($list_length[:iamb])][0]
@@ -174,7 +174,7 @@ module Parser
       #puts "Detected #{arg} prefix as #{word_info[:prefix]}"
       word_info[:suffix] = arg[Extract_suffix] unless word_info[:single_word]
       #puts "Detected #{arg} suffix as #{word_info[:suffix]}"
-      puts word_info.inspect
+      #puts word_info.inspect
       word_info.merge!(overall_info)
       info_array << word_info
     end
