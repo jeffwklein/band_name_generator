@@ -47,6 +47,7 @@ module Parser
   def self.find_random_words (info_array)
     #puts info_array.inspect
     result_vector = []
+    start_letter = ("a".."z").to_a.sample
     info_array.each do |info|
       # set default values
       info = {
@@ -63,6 +64,7 @@ module Parser
         puts "Error: cannot have prefixes when alliteration flag is present"
         return
       elsif (info[:alliteration])
+        info[:alliteration] = start_letter if (info[:alliteration] == :random)
         info[:prefix] = info[:alliteration]
       end
 
@@ -117,7 +119,7 @@ module Parser
         #puts "flag #{arg} is valid"
         if (arg[1] == "a")
           if (arg[2] == "*")
-            overall_info[:alliteration] = ("a".."z").to_a.sample
+            overall_info[:alliteration] = :random
           else
             overall_info[:alliteration] = arg[2]
           end
